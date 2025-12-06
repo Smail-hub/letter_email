@@ -1,15 +1,20 @@
 import os
 from dotenv import load_dotenv
+import smtplib
 
-load_dotenv(dotenv_path="D:/Devman_obychenie/letter_email/.gitignore/.env")
+
+load_dotenv()
 
 login = os.getenv("LOGIN")
 token = os.getenv("TOKEN")
 
-import smtplib
+sender_email = "Safin508@yandex.ru"
+sender_name = "Эмиль"
+recipient_email = "Safin508@yandex.ru"
+recipient_name = "Родион"
 
-email_from = "Safin508@yandex.ru"
-email_to = "Safin508@yandex.ru"
+email_from = sender_email
+email_to = recipient_email
 subject = "Приглашение!"
 
 letter = """From: {From}
@@ -33,14 +38,14 @@ Content-Type: text/plain; charset="UTF-8";
 
 Регистрируйся → %website%  
 На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл.""".format(
-    From="Safin508@yandex.ru", To="Safin508@yandex.ru", Subject="Приглашение!"
+    From=sender_email, To=recipient_email, Subject="Приглашение!"
 )
 
 letter = letter.replace(
     "%website%", "https://dvmn.org/profession-ref-program/safin508/4CGyl/"
 )
-letter = letter.replace("%friend_name%", "Родион")
-letter = letter.replace("%my_name%", "Эмиль")
+letter = letter.replace("%friend_name%", recipient_name)
+letter = letter.replace("%my_name%", sender_name)
 
 letter = letter.encode("UTF-8")
 
