@@ -50,6 +50,6 @@ letter = letter.replace("%my_name%", sender_name)
 letter = letter.encode("UTF-8")
 
 server = smtplib.SMTP_SSL("smtp.yandex.ru", 465)
-server.login(email_from, "uikmorqqilpaqeok")
+server.login(login, token)
 server.sendmail(email_from, email_to, letter)
 server.quit()
